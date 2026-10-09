@@ -1,0 +1,819 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vaishnavi D Koushik | Resume</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --bg: #ffffff;
+            --surface: #f4f5fb;
+            --card: #ffffff;
+            --text: #20243a;
+            --muted: #687087;
+            --accent: #6c63ff;
+            --accent2: #a855f7;
+            --border: #e3e6f0;
+        }
+
+        body.dark {
+            --bg: #111322;
+            --surface: #191c30;
+            --card: #20243a;
+            --text: #f1f2ff;
+            --muted: #b1b6cf;
+            --accent: #9b93ff;
+            --accent2: #c084fc;
+            --border: #30344c;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            transition: 0.3s;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            cursor: pointer;
+            font: inherit;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            padding: 15px 8%;
+            background: var(--bg);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .theme-btn {
+            padding: 8px 12px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--surface);
+            color: var(--text);
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 550px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            padding: 80px 10%;
+            background:
+                radial-gradient(circle at 90% 20%,
+                rgba(108, 99, 255, 0.13), transparent 30%),
+                var(--bg);
+        }
+
+        .hero-content {
+            max-width: 650px;
+        }
+
+        .tagline, .section-label {
+            color: var(--accent);
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+
+        .hero h1 {
+            font-size: clamp(32px, 5vw, 52px);
+            line-height: 1.2;
+            margin-bottom: 15px;
+        }
+
+        .hero h1 span {
+            display: block;
+            background: linear-gradient(90deg, var(--accent), var(--accent2));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero h2 {
+            font-size: 23px;
+            margin-bottom: 18px;
+        }
+
+        .hero-description, .about-text {
+            color: var(--muted);
+            margin-bottom: 25px;
+        }
+
+        .hero-buttons, .contact-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 11px 18px;
+            border-radius: 8px;
+            border: 1px solid var(--accent);
+            font-size: 14px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .primary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .secondary {
+            color: var(--accent);
+            background: transparent;
+        }
+
+        .profile-circle {
+            width: 220px;
+            height: 220px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            box-shadow: 0 0 0 15px rgba(108, 99, 255, 0.08);
+        }
+
+        .profile-circle span {
+            color: white;
+            font-size: 70px;
+            font-weight: bold;
+        }
+
+        /* Sections */
+        .section {
+            padding: 70px 10%;
+            scroll-margin-top: 75px;
+        }
+
+        .section h2 {
+            font-size: 32px;
+            margin-bottom: 25px;
+        }
+
+        .alternate {
+            background: var(--surface);
+        }
+
+        /* About */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .info-card {
+            padding: 20px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: var(--card);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.04);
+        }
+
+        .info-card span, .info-card strong {
+            display: block;
+        }
+
+        .info-card span {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .skill-card {
+            padding: 18px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+        }
+
+        .skill-track {
+            height: 8px;
+            margin-top: 10px;
+            background: var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .skill-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), var(--accent2));
+            border-radius: 10px;
+        }
+
+        .small-note {
+            color: var(--muted);
+            font-size: 12px;
+            margin-top: 15px;
+        }
+
+        /* Education */
+        .timeline {
+            border-left: 2px solid var(--accent);
+            margin-left: 8px;
+            padding-left: 25px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .timeline-content {
+            padding: 22px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+
+        .timeline-content::before {
+            content: "";
+            position: absolute;
+            left: -34px;
+            top: 8px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: 3px solid var(--bg);
+        }
+
+        .timeline-content p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .institution {
+            color: var(--accent) !important;
+            font-weight: bold;
+        }
+
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 22px;
+        }
+
+        .project-card {
+            padding: 25px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            transition: 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--accent);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+        }
+
+        .project-icon {
+            font-size: 35px;
+            margin-bottom: 12px;
+        }
+
+        .project-card h3 {
+            margin-bottom: 10px;
+        }
+
+        .project-card p {
+            color: var(--muted);
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin-bottom: 18px;
+        }
+
+        .project-tags span {
+            padding: 4px 8px;
+            color: var(--accent);
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            font-size: 11px;
+        }
+
+        .project-link {
+            color: var(--accent);
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        /* Contact */
+        .contact-section {
+            text-align: center;
+        }
+
+        .contact-section > p:not(.section-label) {
+            color: var(--muted);
+            max-width: 600px;
+            margin: 0 auto 25px;
+        }
+
+        .contact-links {
+            justify-content: center;
+        }
+
+        /* Footer */
+        footer {
+            padding: 25px 15px;
+            text-align: center;
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+        }
+
+        footer p {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        /* Back to top */
+        .top-btn {
+            display: none;
+            position: fixed;
+            right: 25px;
+            bottom: 25px;
+            width: 45px;
+            height: 45px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 23px;
+        }
+
+        .top-btn.show {
+            display: block;
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 900px) {
+            .hero {
+                padding: 65px 7%;
+            }
+
+            .section {
+                padding: 55px 7%;
+            }
+
+            .projects-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .nav-links {
+                gap: 12px;
+            }
+        }
+
+        @media (max-width: 650px) {
+            .navbar {
+                flex-wrap: wrap;
+                padding: 12px 5%;
+            }
+
+            .nav-links {
+                order: 3;
+                width: 100%;
+                overflow-x: auto;
+                padding: 5px 0;
+            }
+
+            .nav-links a {
+                white-space: nowrap;
+            }
+
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+                padding: 45px 6%;
+            }
+
+            .profile-circle {
+                width: 145px;
+                height: 145px;
+            }
+
+            .profile-circle span {
+                font-size: 48px;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .section {
+                padding: 45px 6%;
+            }
+
+            .section h2 {
+                font-size: 28px;
+            }
+
+            .info-grid, .skills-grid, .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Print resume */
+        @media print {
+            .navbar, .hero-buttons, .contact-links, .top-btn {
+                display: none !important;
+            }
+
+            body, .hero, .section, .alternate {
+                background: white !important;
+                color: black !important;
+            }
+
+            .hero, .section {
+                padding: 20px;
+                break-inside: avoid;
+            }
+
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .project-card, .info-card, .timeline-content, .skill-card {
+                box-shadow: none;
+                border: 1px solid #ccc;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <a href="#home" class="logo">VK.</a>
+
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#education">Education</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </div>
+
+        <button id="themeBtn" class="theme-btn" aria-label="Toggle dark mode">
+            🌙
+        </button>
+    </nav>
+
+    <header id="home" class="hero">
+        <div class="hero-content">
+            <p class="tagline">WELCOME TO MY PORTFOLIO</p>
+            <h1>Hi, I'm <span>Vaishnavi D Koushik</span></h1>
+            <h2>Full Stack Web Developer</h2>
+
+            <p class="hero-description">
+                I build responsive, user-friendly websites and web applications.
+                I enjoy solving problems, learning new technologies, and turning
+                ideas into working projects.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="#projects" class="btn primary">View Projects</a>
+                <a href="#contact" class="btn secondary">Contact Me</a>
+                <button onclick="downloadResume()" class="btn secondary">
+                    Download Resume
+                </button>
+            </div>
+        </div>
+
+        <div class="profile-circle">
+            <span>VK</span>
+        </div>
+    </header>
+
+    <main>
+        <section id="about" class="section">
+            <p class="section-label">GET TO KNOW ME</p>
+            <h2>About Me</h2>
+
+            <p class="about-text">
+                I am a Bachelor of Computer Applications student at Amrita
+                Vishwa Vidyapeetham, interested in full stack web development
+                and software engineering. I have knowledge of HTML, CSS,
+                JavaScript, React.js and Python. I enjoy creating practical
+                projects and learning new technologies.
+            </p>
+
+            <div class="info-grid">
+                <div class="info-card">
+                    <span>📍 Location</span>
+                    <strong>Mysuru, Karnataka</strong>
+                </div>
+
+                <div class="info-card">
+                    <span>🎓 Degree</span>
+                    <strong>BCA</strong>
+                </div>
+
+                <div class="info-card">
+                    <span>💻 Focus</span>
+                    <strong>Full Stack Development</strong>
+                </div>
+
+                <div class="info-card">
+                    <span>🚀 Interests</span>
+                    <strong>Web Development & Cybersecurity</strong>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="section alternate">
+            <p class="section-label">WHAT I WORK WITH</p>
+            <h2>My Skills</h2>
+
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <span>HTML5</span>
+                    <div class="skill-track">
+                        <div class="skill-fill" style="width:85%"></div>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <span>CSS3</span>
+                    <div class="skill-track">
+                        <div class="skill-fill" style="width:80%"></div>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <span>JavaScript</span>
+                    <div class="skill-track">
+                        <div class="skill-fill" style="width:65%"></div>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <span>Python</span>
+                    <div class="skill-track">
+                        <div class="skill-fill" style="width:75%"></div>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <span>React.js</span>
+                    <div class="skill-track">
+                        <div class="skill-fill" style="width:60%"></div>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <span>MERN Stack</span>
+                    <div class="skill-track">
+                        <div class="skill-fill" style="width:50%"></div>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <span>Django</span>
+                    <div class="skill-track">
+                        <div class="skill-fill" style="width:40%"></div>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <span>Git & GitHub</span>
+                    <div class="skill-track">
+                        <div class="skill-fill" style="width:60%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <p class="small-note">
+                Skill levels are illustrative. Update them to match your abilities.
+            </p>
+        </section>
+
+        <section id="education" class="section">
+            <p class="section-label">MY ACADEMIC JOURNEY</p>
+            <h2>Education</h2>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Bachelor of Computer Applications (BCA)</h3>
+                        <p class="institution">Amrita Vishwa Vidyapeetham</p>
+                        <p>Currently pursuing | Expected graduation: 2029</p>
+                        <p>CGPA: 7.5 / 10</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>12th Standard</h3>
+                        <p class="institution">Chaitra PU College</p>
+                        <p>Percentage: 92%</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>10th Standard</h3>
+                        <p class="institution">D A V Public School</p>
+                        <p>Percentage: 81%</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="section alternate">
+            <p class="section-label">SOME THINGS I'VE BUILT</p>
+            <h2>My Projects</h2>
+
+            <div class="projects-grid">
+                <article class="project-card">
+                    <div class="project-icon">🛍️</div>
+                    <h3>CraveKraft Website</h3>
+                    <p>A website for a homemade food brand with product presentation and a shopping interface.</p>
+                    <div class="project-tags">
+                        <span>HTML</span><span>CSS</span><span>JavaScript</span>
+                    </div>
+                    <a href="https://github.com/" class="project-link" target="_blank" rel="noopener noreferrer">Add Repository Link ↗</a>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-icon">🧮</div>
+                    <h3>Simple Calculator</h3>
+                    <p>A Python program that performs basic arithmetic operations based on user input.</p>
+                    <div class="project-tags">
+                        <span>Python</span><span>Logic</span>
+                    </div>
+                    <a href="https://github.com/" class="project-link" target="_blank" rel="noopener noreferrer">Add Repository Link ↗</a>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-icon">📱</div>
+                    <h3>QR Code Generator</h3>
+                    <p>A Python application that generates QR codes from user-provided information.</p>
+                    <div class="project-tags">
+                        <span>Python</span><span>qrcode</span>
+                    </div>
+                    <a href="https://github.com/" class="project-link" target="_blank" rel="noopener noreferrer">Add Repository Link ↗</a>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-icon">✅</div>
+                    <h3>To-Do List</h3>
+                    <p>A task management program to add, display and remove tasks.</p>
+                    <div class="project-tags">
+                        <span>Python</span><span>Lists</span>
+                    </div>
+                    <a href="https://github.com/" class="project-link" target="_blank" rel="noopener noreferrer">Add Repository Link ↗</a>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-icon">🔐</div>
+                    <h3>Random Password Generator</h3>
+                    <p>Generates random passwords using letters, numbers and special characters.</p>
+                    <div class="project-tags">
+                        <span>Python</span><span>Random</span>
+                    </div>
+                    <a href="https://github.com/" class="project-link" target="_blank" rel="noopener noreferrer">Add Repository Link ↗</a>
+                </article>
+            </div>
+        </section>
+
+        <section id="contact" class="section contact-section">
+            <p class="section-label">LET'S CONNECT</p>
+            <h2>Contact Me</h2>
+
+            <p>
+                Interested in collaborating or discussing an opportunity?
+                Feel free to get in touch.
+            </p>
+
+            <div class="contact-links">
+                <a href="mailto:your-email@example.com" class="btn primary">
+                    ✉ Email Me
+                </a>
+
+                <a href="https://github.com/your-username"
+                   target="_blank" rel="noopener noreferrer"
+                   class="btn secondary">GitHub ↗</a>
+
+                <a href="https://www.linkedin.com/in/your-username/"
+                   target="_blank" rel="noopener noreferrer"
+                   class="btn secondary">LinkedIn ↗</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© <span id="year"></span> Vaishnavi D Koushik. All rights reserved.</p>
+        <p>Designed with HTML, CSS and JavaScript.</p>
+    </footer>
+
+    <button id="topBtn" class="top-btn" aria-label="Back to top">↑</button>
+
+    <script>
+        const themeBtn = document.getElementById("themeBtn");
+        const topBtn = document.getElementById("topBtn");
+
+        document.getElementById("year").textContent =
+            new Date().getFullYear();
+
+        // Dark mode
+        themeBtn.addEventListener("click", function () {
+            document.body.classList.toggle("dark");
+
+            themeBtn.textContent =
+                document.body.classList.contains("dark") ? "☀️" : "🌙";
+        });
+
+        // Back-to-top button
+        window.addEventListener("scroll", function () {
+            if (window.scrollY > 300) {
+                topBtn.classList.add("show");
+            } else {
+                topBtn.classList.remove("show");
+            }
+        });
+
+        topBtn.addEventListener("click", function () {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+
+        // Print or save as PDF
+        function downloadResume() {
+            window.print();
+        }
+    </script>
+
+</body>
+</html>
